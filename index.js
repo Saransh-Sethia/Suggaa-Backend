@@ -2,7 +2,6 @@ require("dotenv").config({ path: "src/.env" });
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
 const cors = require("cors");
 
@@ -10,7 +9,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
 mongoose

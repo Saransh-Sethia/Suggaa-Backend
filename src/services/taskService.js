@@ -10,28 +10,28 @@ const createTask = async (taskData) => {
   }
 };
 
-const getAllTasks = async (userId) => {
+const getAllTasks = async () => {
   try {
-    const tasks = await Task.find({ userId: userId });
+    const tasks = await Task.find();
     return tasks;
   } catch (error) {
     throw error;
   }
 };
 
-const getTaskById = async (taskId, userId) => {
+const getTaskById = async (taskId) => {
   try {
-    const task = await Task.findOne({ userId: userId, _id: taskId });
+    const task = await Task.findOne({ _id: taskId });
     return task;
   } catch (error) {
     throw error;
   }
 };
 
-const updateTask = async (taskId, userId, updatedData) => {
+const updateTask = async (taskId, updatedData) => {
   try {
     const task = await Task.findOneAndUpdate(
-        {_id: taskId, userId: userId},
+        {_id: taskId,},
         {$set: updatedData},
         {new: true}
         );
@@ -41,10 +41,10 @@ const updateTask = async (taskId, userId, updatedData) => {
   }
 };
 
-const deleteTask = async(taskId, userId) => {
+const deleteTask = async(taskId) => {
     try{
       const task = await Task.findOneAndDelete({
-        _id: taskId, userId: userId
+        _id: taskId,
       });
       return task;
     } catch(error){
